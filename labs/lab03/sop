@@ -1,0 +1,11 @@
+A  B  C  Y  minterm name
+0  0  0  0  !A!B!C  m0
+0  0  1  1  !A!BC   m1
+0  1  0  0  !AB!C   m2
+0  1  1  0  !ABC    m3
+1  0  0  0  A!B!C   m4
+1  0  1  1  A!BC    m5
+1  1  0  0  AB!C    m6
+1  1  1  1  ABC     m7
+
+sigma(1, 5, 7) = !A!BC + A!BC + ABC = !BC + AC
