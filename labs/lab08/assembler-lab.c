@@ -66,19 +66,19 @@ int main(int argc, char *argv[])
       // the value in dr.  It's a pointer.  We will talk about this in
       // class.  Because it's important.  Seriously, pay attention to this.
       if (sscanf(buffer, "add r%d, r%d, r%d", &dr, &sr1, &sr2) == 3)
-	{
-	  // "<<" shifts bits.  If you've programmed in C++, sorry.  Life
-	  // is going to be confusing.  C++ input and output is dumb.
-	  // The single vertical bar (|) is logical or -- we or the bits
-	  // together, to form the opcode.
-	  opcode = dr << 6 | sr1 << 4 | sr2 << 2 | 0;
-	  printf("%02x : %s", opcode, buffer);
-	  // Continue will take you down to the bottom of the enclosing loop.
-	  // Yes, it's a branch/jump instruction.  If we have matched the
-	  // instruction on the input, no need to check other things that
-	  // might match....
-	  continue;
-	}
+    {
+      // "<<" shifts bits.  If you've programmed in C++, sorry.  Life
+      // is going to be confusing.  C++ input and output is dumb.
+      // The single vertical bar (|) is logical or -- we or the bits
+      // together, to form the opcode.
+      opcode = dr << 6 | sr1 << 4 | sr2 << 2 | 0;
+      printf("%02x : %s", opcode, buffer);
+      // Continue will take you down to the bottom of the enclosing loop.
+      // Yes, it's a branch/jump instruction.  If we have matched the
+      // instruction on the input, no need to check other things that
+      // might match....
+      continue;
+    }
 
       // INSERT CODE FOR sub HERE!
       // It should be painfully simple.  Look at how add and mul are
@@ -86,26 +86,26 @@ int main(int argc, char *argv[])
       // Then, look at the sscanf call.  Once you've got an idea of
       // how the code works, it should take you two minutes to add
       // in the sub instruction....
-	  
-	if (sscanf(buffer, "sub r%d, r%d, r%d", &dr, &sr1, &sr2) == 3)
-	{
-		opcode = dr << 6 | sr1 << 4 | sr2 << 2 | 1;
-		printf("%02x : %s", opcode, buffer);
-		continue;
-	}
+      
+    if (sscanf(buffer, "sub r%d, r%d, r%d", &dr, &sr1, &sr2) == 3)
+    {
+        opcode = dr << 6 | sr1 << 4 | sr2 << 2 | 1;
+        printf("%02x : %s", opcode, buffer);
+        continue;
+    }
 
       if (sscanf(buffer, "mul r%d, r%d, r%d", &dr, &sr1, &sr2) == 3)
-	{
-	  opcode = dr << 6 | sr1 << 4 | sr2 << 2 | 2;
-	  printf("%02x : %s", opcode, buffer);
-	  continue;
-	}
+    {
+      opcode = dr << 6 | sr1 << 4 | sr2 << 2 | 2;
+      printf("%02x : %s", opcode, buffer);
+      continue;
+    }
       if (sscanf(buffer, "ldi r%d, %d", &dr, &immediate) == 2)
-	{
-	  opcode = dr << 6 | ((immediate << 2) & 0x3c) | 3;
-	  printf("%02x : %s", opcode, buffer);
-	  continue;
-	}
+    {
+      opcode = dr << 6 | ((immediate << 2) & 0x3c) | 3;
+      printf("%02x : %s", opcode, buffer);
+      continue;
+    }
       // You could have some error checking here, or warn if
       // you saw something you didn't expect
       // printf("Unrecognized line.\n");
